@@ -350,7 +350,7 @@ function Kings.newWindow(windowName, windowSettings)
 		newWindowSidebarTab["Name"] = [[tab]];
 		newWindowSidebarTab["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 		newWindowSidebarTab["Text"] = windowSettings["sidebarMainName"];
-		newWindowSidebarTab["Position"] = UDim2.new(0.04525686427950859, 0, 0.09749999642372131, 0);
+		newWindowSidebarTab["Position"] = UDim2.new(0.03846153989434242, 0, 0.09749999642372131, 0);
 		newWindowSidebarTab["BackgroundTransparency"] = 1;
 		newWindowSidebarTab["ZIndex"] = 2;
 		newWindowSidebarTab.MouseButton1Click:connect(function() 
