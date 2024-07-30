@@ -371,9 +371,17 @@ function Kings.newWindow(windowName, windowSettings)
 		newWindowSidebarTabUnderline["Position"] = UDim2.new(0.03846153989434242, 0, 1, 0);
 		newWindowSidebarTabUnderline["Name"] = [[underline]];
 		newWindowSidebarTabUnderline["ZIndex"] = 2;
-
+	
+	
+	local newWindowUIGradient = Instance.new("UIGradient", newWindowSidebarTab);
+	newWindowUIGradient["Rotation"] = 45;
+	newWindowUIGradient["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(50, 50, 50)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(50, 50, 50))};
+	if (windowSettings["windowColor"]) then
+		newWindowUIGradient["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(windowSettings["windowColor"][1], windowSettings["windowColor"][2], windowSettings["windowColor"][3])),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(0, 0, 0))};
+	end
+        --i dont need the icon :P
 		local newWindowSidebarTabIcon = Instance.new("ImageButton", newWindowSidebarTab);
-		newWindowSidebarTabIcon["ImageTransparency"] = 0.10000000149011612;
+		newWindowSidebarTabIcon["ImageTransparency"] = 1;
 		newWindowSidebarTabIcon["Image"] = [[rbxassetid://3926305904]];
 		newWindowSidebarTabIcon["ImageRectSize"] = Vector2.new(36, 36);
 		newWindowSidebarTabIcon["Size"] = UDim2.new(0, 25, 0, 25);
