@@ -897,37 +897,16 @@ function Kings.newSidebarOption(window, tabToView, text, icon)
 	newWindowSidebarTab["BorderSizePixel"] = 0;
 	newWindowSidebarTab["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
 	newWindowSidebarTab["TextSize"] = 16;
-	newWindowSidebarTab["TextXAlignment"] = Enum.TextXAlignment.Left;
 	newWindowSidebarTab["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
 	newWindowSidebarTab["TextColor3"] = Color3.fromRGB(221, 221, 221);
 	newWindowSidebarTab["Size"] = UDim2.new(0, 124, 0, 40);
 	newWindowSidebarTab["Name"] = [[tab]];
 	newWindowSidebarTab["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 	newWindowSidebarTab["Text"] = text;
+	newWindowSidebarTab["TextXAlignment"] = Enum.TextXAlignment.Left;
 	newWindowSidebarTab["Position"] = UDim2.new(0.04525686427950859, 0, 0.09749999642372131, 0);
 	newWindowSidebarTab["BackgroundTransparency"] = 1;
 	newWindowSidebarTab["ZIndex"] = 2;
-	newWindowSidebarTab.MouseButton1Click:connect(function()
-		for i, v in pairs(window:GetChildren()) do
-			if v:IsA("ScrollingFrame") then
-				v.Visible = false
-			end
-		end
-
-		tabToView[1].Visible = true;
-	end)
-
-
-	local newWindowSidebarTabUnderline = Instance.new("Frame", newWindowSidebarTab);
-	newWindowSidebarTabUnderline["BorderSizePixel"] = 0;
-	newWindowSidebarTabUnderline["BackgroundColor3"] = Color3.fromRGB(151, 151, 151);
-	newWindowSidebarTabUnderline["Size"] = UDim2.new(0, 110, 0, 1);
-	newWindowSidebarTabUnderline["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-	newWindowSidebarTabUnderline["Position"] = UDim2.new(0.03846153989434242, 0, 1, 0);
-	newWindowSidebarTabUnderline["Name"] = [[underline]];
-	newWindowSidebarTabUnderline["ZIndex"] = 2;
-
-
 
 	local newWindowSidebarTabIcon = Instance.new("ImageButton", newWindowSidebarTab);
 	newWindowSidebarTabIcon["ImageTransparency"] = 0.10000000149011612;
@@ -944,18 +923,37 @@ function Kings.newSidebarOption(window, tabToView, text, icon)
 		end
 	end
 
-
 	newWindowSidebarTabIcon["Size"] = UDim2.new(0, 25, 0, 25);
 	newWindowSidebarTabIcon["Name"] = [[home]];
-	newWindowSidebarTabIcon["Position"] = UDim2.new(0.04615384712815285, 0, 0.15000000596046448, 0);
+	newWindowSidebarTabIcon["Position"] = UDim2.new(0, 5, 0, 7.5);
 	newWindowSidebarTabIcon["BackgroundTransparency"] = 1;
 	newWindowSidebarTabIcon["ZIndex"] = 2;
 
+	local fixate = Instance.new("UIPadding", newWindowSidebarTab)
+	fixate["PaddingLeft"] = UDim.new(0, 35)
 
+	newWindowSidebarTab.MouseButton1Click:Connect(function()
+		for i, v in pairs(window:GetChildren()) do
+			if v:IsA("ScrollingFrame") then
+				v.Visible = false
+			end
+		end
+
+		tabToView[1].Visible = true;
+	end)
+
+	local newWindowSidebarTabUnderline = Instance.new("Frame", newWindowSidebarTab);
+	newWindowSidebarTabUnderline["BorderSizePixel"] = 0;
+	newWindowSidebarTabUnderline["BackgroundColor3"] = Color3.fromRGB(151, 151, 151);
+	newWindowSidebarTabUnderline["Size"] = UDim2.new(0, 110, 0, 1);
+	newWindowSidebarTabUnderline["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+	newWindowSidebarTabUnderline["Position"] = UDim2.new(0.03846153989434242, 0, 1, 0);
+	newWindowSidebarTabUnderline["Name"] = [[underline]];
+	newWindowSidebarTabUnderline["ZIndex"] = 2;
 
 	local function onclick(func)
-		newWindowSidebarTab.MouseButton1Click:connect(func)
-		newWindowSidebarTabIcon.MouseButton1Click:connect(func)
+		newWindowSidebarTab.MouseButton1Click:Connect(func)
+		newWindowSidebarTabIcon.MouseButton1Click:Connect(func)
 	end
 	
 	local function destroy()
