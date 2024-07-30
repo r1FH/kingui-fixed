@@ -891,80 +891,80 @@ function Kings.newTab(window, name)
 end
 
 function Kings.newSidebarOption(window, tabToView, text, icon)
-	window = window[1];
+    window = window[1];
 
-	local newWindowSidebarTab = Instance.new("TextButton", window["windowSidebar"]["Tabs"]);
-	newWindowSidebarTab["BorderSizePixel"] = 0;
-	newWindowSidebarTab["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-	newWindowSidebarTab["TextSize"] = 16;
-	newWindowSidebarTab["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-	newWindowSidebarTab["TextColor3"] = Color3.fromRGB(221, 221, 221);
-	newWindowSidebarTab["Size"] = UDim2.new(0, 124, 0, 40);
-	newWindowSidebarTab["Name"] = [[tab]];
-	newWindowSidebarTab["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-	newWindowSidebarTab["Text"] = text;
-	newWindowSidebarTab["TextXAlignment"] = Enum.TextXAlignment.Left;
-	newWindowSidebarTab["Position"] = UDim2.new(0.04525686427950859, 0, 0.09749999642372131, 0);
-	newWindowSidebarTab["BackgroundTransparency"] = 1;
-	newWindowSidebarTab["ZIndex"] = 2;
+    local container = Instance.new("Frame", window["windowSidebar"]["Tabs"]);
+    container["Size"] = UDim2.new(0, 124, 0, 40);
+    container["BackgroundTransparency"] = 1;
+    container["LayoutOrder"] = 1;
+    
+    local newWindowSidebarTabIcon = Instance.new("ImageButton", container);
+    newWindowSidebarTabIcon["ImageTransparency"] = 0.10000000149011612;
+    newWindowSidebarTabIcon["Size"] = UDim2.new(0, 25, 0, 25);
+    newWindowSidebarTabIcon["Position"] = UDim2.new(0, 5, 0, 7.5);
+    newWindowSidebarTabIcon["BackgroundTransparency"] = 1;
+    newWindowSidebarTabIcon["ZIndex"] = 2;
+    
+    if icon == nil then
+        newWindowSidebarTabIcon["Image"] = [[rbxassetid://3926305904]];
+        newWindowSidebarTabIcon["ImageRectOffset"] = Vector2.new(964, 204);
+        newWindowSidebarTabIcon["ImageRectSize"] = Vector2.new(36, 36);
+    else
+        newWindowSidebarTabIcon["Image"] = icon[1];
+        newWindowSidebarTabIcon["ImageRectOffset"] = icon[2];
+        if icon[3] ~= nil then
+            newWindowSidebarTabIcon["ImageRectSize"] = icon[3];
+        end
+    end
+    
+    local newWindowSidebarTab = Instance.new("TextButton", container);
+    newWindowSidebarTab["BorderSizePixel"] = 0;
+    newWindowSidebarTab["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+    newWindowSidebarTab["TextSize"] = 16;
+    newWindowSidebarTab["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+    newWindowSidebarTab["TextColor3"] = Color3.fromRGB(221, 221, 221);
+    newWindowSidebarTab["Size"] = UDim2.new(1, -35, 1, 0); -- adjusted size to accommodate icon
+    newWindowSidebarTab["Position"] = UDim2.new(0, 35, 0, 0); -- position to the right of the icon
+    newWindowSidebarTab["Text"] = text;
+    newWindowSidebarTab["TextXAlignment"] = Enum.TextXAlignment.Left;
+    newWindowSidebarTab["BackgroundTransparency"] = 1;
+    newWindowSidebarTab["ZIndex"] = 2;
+    newWindowSidebarTab["Name"] = [[tab]];
+    newWindowSidebarTab["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 
-	local newWindowSidebarTabIcon = Instance.new("ImageButton", newWindowSidebarTab);
-	newWindowSidebarTabIcon["ImageTransparency"] = 0.10000000149011612;
+    newWindowSidebarTab.MouseButton1Click:Connect(function()
+        for i, v in pairs(window:GetChildren()) do
+            if v:IsA("ScrollingFrame") then
+                v.Visible = false
+            end
+        end
 
-	if icon == nil then
-		newWindowSidebarTabIcon["Image"] = [[rbxassetid://3926305904]];
-		newWindowSidebarTabIcon["ImageRectOffset"] = Vector2.new(964, 204);
-		newWindowSidebarTabIcon["ImageRectSize"] = Vector2.new(36, 36);
-	else
-		newWindowSidebarTabIcon["Image"] = icon[1];
-		newWindowSidebarTabIcon["ImageRectOffset"] = icon[2];
-		if icon[3] ~= nil then
-			newWindowSidebarTabIcon["ImageRectSize"] = icon[3];
-		end
-	end
+        tabToView[1].Visible = true;
+    end)
 
-	newWindowSidebarTabIcon["Size"] = UDim2.new(0, 25, 0, 25);
-	newWindowSidebarTabIcon["Name"] = [[home]];
-	newWindowSidebarTabIcon["Position"] = UDim2.new(0, 5, 0, 7.5);
-	newWindowSidebarTabIcon["BackgroundTransparency"] = 1;
-	newWindowSidebarTabIcon["ZIndex"] = 2;
+    local newWindowSidebarTabUnderline = Instance.new("Frame", newWindowSidebarTab);
+    newWindowSidebarTabUnderline["BorderSizePixel"] = 0;
+    newWindowSidebarTabUnderline["BackgroundColor3"] = Color3.fromRGB(151, 151, 151);
+    newWindowSidebarTabUnderline["Size"] = UDim2.new(0, 110, 0, 1);
+    newWindowSidebarTabUnderline["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+    newWindowSidebarTabUnderline["Position"] = UDim2.new(0, 0, 1, 0);
+    newWindowSidebarTabUnderline["Name"] = [[underline]];
+    newWindowSidebarTabUnderline["ZIndex"] = 2;
 
-	local fixate = Instance.new("UIPadding", newWindowSidebarTab)
-	fixate["PaddingLeft"] = UDim.new(0, 35)
+    local function onclick(func)
+        newWindowSidebarTab.MouseButton1Click:Connect(func)
+        newWindowSidebarTabIcon.MouseButton1Click:Connect(func)
+    end
+    
+    local function destroy()
+        container:Destroy()
+    end
 
-	newWindowSidebarTab.MouseButton1Click:Connect(function()
-		for i, v in pairs(window:GetChildren()) do
-			if v:IsA("ScrollingFrame") then
-				v.Visible = false
-			end
-		end
-
-		tabToView[1].Visible = true;
-	end)
-
-	local newWindowSidebarTabUnderline = Instance.new("Frame", newWindowSidebarTab);
-	newWindowSidebarTabUnderline["BorderSizePixel"] = 0;
-	newWindowSidebarTabUnderline["BackgroundColor3"] = Color3.fromRGB(151, 151, 151);
-	newWindowSidebarTabUnderline["Size"] = UDim2.new(0, 110, 0, 1);
-	newWindowSidebarTabUnderline["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-	newWindowSidebarTabUnderline["Position"] = UDim2.new(0.03846153989434242, 0, 1, 0);
-	newWindowSidebarTabUnderline["Name"] = [[underline]];
-	newWindowSidebarTabUnderline["ZIndex"] = 2;
-
-	local function onclick(func)
-		newWindowSidebarTab.MouseButton1Click:Connect(func)
-		newWindowSidebarTabIcon.MouseButton1Click:Connect(func)
-	end
-	
-	local function destroy()
-		newWindowSidebarTab:Destroy()
-	end
-
-	return {
-		newWindowSidebarTab;
-		onclick = onclick;
-		destroy = destroy;
-	}
+    return {
+        container;
+        onclick = onclick;
+        destroy = destroy;
+    }
 end
 
 function Kings.newSliderElement(window, tab, text, defaultValue)
