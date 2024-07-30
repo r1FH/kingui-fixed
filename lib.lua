@@ -346,7 +346,7 @@ function Kings.newWindow(windowName, windowSettings)
 		newWindowSidebarTab["TextXAlignment"] = Enum.TextXAlignment.Left;
 		newWindowSidebarTab["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
 		newWindowSidebarTab["TextColor3"] = Color3.fromRGB(221, 221, 221);
-		newWindowSidebarTab["Size"] = UDim2.new(0, 110, 0, 1);
+		newWindowSidebarTab["Size"] = UDim2.new(0, 110, 0, 40);
 		newWindowSidebarTab["Name"] = [[tab]];
 		newWindowSidebarTab["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 		newWindowSidebarTab["Text"] = windowSettings["sidebarMainName"];
@@ -373,12 +373,12 @@ function Kings.newWindow(windowName, windowSettings)
 		newWindowSidebarTabUnderline["ZIndex"] = 2;
 	
 	
-	local newWindowUIGradient = Instance.new("UIGradient", newWindowSidebarTab);
-	newWindowUIGradient["Rotation"] = 45;
-	newWindowUIGradient["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(50, 50, 50)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(50, 50, 50))};
-	if (windowSettings["windowColor"]) then
-		newWindowUIGradient["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(windowSettings["windowColor"][1], windowSettings["windowColor"][2], windowSettings["windowColor"][3])),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(0, 0, 0))};
-	end
+	        local newWindowUIGradient = Instance.new("UIGradient", newWindowSidebarTab);
+	        newWindowUIGradient["Rotation"] = 45;
+	        newWindowUIGradient["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(50, 50, 50)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(50, 50, 50))};
+	        if (windowSettings["windowColor"]) then
+		    newWindowUIGradient["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(windowSettings["windowColor"][1], windowSettings["windowColor"][2], windowSettings["windowColor"][3])),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(0, 0, 0))};
+	        end
         --i dont need the icon :P
 		local newWindowSidebarTabIcon = Instance.new("ImageButton", newWindowSidebarTab);
 		newWindowSidebarTabIcon["ImageTransparency"] = 1;
