@@ -336,14 +336,14 @@ function Kings.newWindow(windowName, windowSettings)
 		end)
 
 		if windowSettings["sidebarMainName"] == nil then
-			windowSettings["sidebarMainName"] = "main";
+			windowSettings["sidebarMainName"] = "Main";
 		end
 
 		local newWindowSidebarTab = Instance.new("TextButton", newWindowSidebarTabs);
 		newWindowSidebarTab["BorderSizePixel"] = 0;
 		newWindowSidebarTab["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
 		newWindowSidebarTab["TextSize"] = 16;
-		newWindowSidebarTab["FontFace"] = Font.new([[rbxasset://fonts/families/Ubuntu.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+		newWindowSidebarTab["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
 		newWindowSidebarTab["TextColor3"] = Color3.fromRGB(221, 221, 221);
 		newWindowSidebarTab["Size"] = UDim2.new(0, 124, 0, 40);
 		newWindowSidebarTab["Name"] = [[tab]];
