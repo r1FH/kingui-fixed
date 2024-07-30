@@ -343,7 +343,6 @@ function Kings.newWindow(windowName, windowSettings)
 		newWindowSidebarTab["BorderSizePixel"] = 0;
 		newWindowSidebarTab["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
 		newWindowSidebarTab["TextSize"] = 16;
-		newWindowSidebarTab["TextXAlignment"] = Enum.TextXAlignment.Middle;
 		newWindowSidebarTab["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
 		newWindowSidebarTab["TextColor3"] = Color3.fromRGB(221, 221, 221);
 		newWindowSidebarTab["Size"] = UDim2.new(0, 110, 0, 40);
